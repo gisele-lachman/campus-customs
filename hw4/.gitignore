@@ -1,0 +1,36 @@
+# Private shop data: database and product pictures (never commit)
+data/
+data.zip
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node / Vite
+node_modules/
+frontend/dist/
+
+# OS / editor
+.DS_Store
+
+# Audit trail helpers (the audit_trail.json itself IS committed)
+output/.audit_trail.lock
+output/.audit_trail.*.tmp
+
+# Build output, logs, and scratch files
+dist/
+build/
+*.log
+*.tmp
+*.swp
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.claude/

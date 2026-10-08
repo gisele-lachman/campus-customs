@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Campus Customs · App Check</title>
+  <style>
+    :root { --navy: #00356b; --cream: #f6f0e1; --paper: #fffaf0; --gold: #c4962c; --ink: #1d2433; --muted: #545d6e; --line: #ddd2b8; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--cream); color: var(--ink); font: 17px/1.6 "Libre Franklin", system-ui, -apple-system, "Segoe UI", sans-serif; }
+    header { background: var(--navy); color: var(--paper); border-bottom: 5px solid var(--gold); padding: 32px 24px 28px; text-align: center; }
+    header h1 { margin: 0 0 6px; font: 400 2.1rem/1.2 Georgia, "Times New Roman", serif; letter-spacing: 0.02em; }
+    header p { margin: 0; color: #dfe7f2; }
+    main { max-width: 1100px; margin: 0 auto; padding: 32px 20px 64px; }
+    section { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 24px 26px 26px; margin-bottom: 32px; box-shadow: 0 6px 20px rgba(13, 31, 58, 0.07); }
+    .tag { display: inline-block; font: 700 0.72rem/1 system-ui, sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--navy); border-left: 3px solid var(--gold); padding-left: 8px; }
+    h2 { margin: 8px 0 16px; font: 400 1.55rem/1.25 Georgia, "Times New Roman", serif; color: var(--navy); }
+    img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 10px; }
+    .caption { margin: 16px 0 0; }
+    .caption strong { color: var(--navy); }
+    table { border-collapse: collapse; margin-top: 12px; font-size: 0.95rem; width: 100%; }
+    th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { color: var(--navy); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    td.ok { color: #2f6b3f; font-weight: 700; white-space: nowrap; }
+    footer { text-align: center; color: var(--muted); font-size: 0.9rem; padding-bottom: 32px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Campus Customs · App Check</h1>
+    <p>Three screenshots from the real running site (laptop width, 1440 × 900), each checked against the shop database.</p>
+  </header>
+
+  <main>
+    <section>
+      <span class="tag">Check 1</span>
+      <h2>Chat checks the inventory of an item, including a sold-out size</h2>
+      <img src="app_check_images/inventory.png" alt="Product page for the Champion Reverse Weave Crewneck with the chat open, answering a price and size question." />
+      <p class="caption">
+        On the Champion Reverse Weave Crewneck page, a guest asked: “How much is the Champion Reverse Weave Crewneck? Do you have it in a small, and how many mediums are left?” The chatbot looked the item up in the database and answered honestly: <strong>$58.00, Small is sold out, 12 mediums left, also available in XL</strong>. The size board behind the chat shows the same thing (S “Sold out”, M “12 in stock”).
+      </p>
+      <table>
+        <tr><th>On screen</th><th>Database (catalogue + inventory)</th><th>Match</th></tr>
+        <tr><td>Price $58.00</td><td>price = 58.0</td><td class="ok">✓</td></tr>
+        <tr><td>Small is sold out</td><td>S = 0</td><td class="ok">✓</td></tr>
+        <tr><td>12 mediums left</td><td>M = 12</td><td class="ok">✓</td></tr>
+        <tr><td>Also available in XL</td><td>XL = 12 (XS, L, XXL are sold out = 0)</td><td class="ok">✓</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <span class="tag">Check 2</span>
+      <h2>Search-result cards appear on the page after a category question</h2>
+      <img src="app_check_images/search_cards.png" alt="Products page showing a chat results banner for hoodies, 12 hoodie cards, and the chat answer with a small preview." />
+      <p class="caption">
+        A guest asked “what hoodies do you have?” on the Home page. The site moved to Products and drew the matching product cards on the page, with the banner <strong>“Showing results from your chat: ‘hoodies’. Found 27 items, showing the top 12.”</strong> The chat answer says the same: “We have 27 hoodies, with 12 shown on the page.” This matches the database: <strong>27</strong> products are hoodies (garment type or name contains “hood”), capped at <strong>12</strong> cards. Each card’s name, price, and picture come from the database rows, not from the AI’s text.
+      </p>
+    </section>
+
+    <section>
+      <span class="tag">Check 3</span>
+      <h2>Usability feature: filters and sorting on the Products page</h2>
+      <img src="app_check_images/filters.png" alt="Products page with Type Hoodies, Color Navy, In stock in XXL, and price low to high selected, showing 22 of 102 items." />
+      <p class="caption">
+        This is <strong>improvement 1, “Filters and sorting on the Products page,” from output/usability.md</strong>. With Type = Hoodies, Color = Navy, Availability = In stock in XXL, and Sort = Price: low to high, the page shows <strong>“Showing 22 of 102 items”</strong> and a “Clear filters” link. The cheapest matches ($45.00) come first. This matches the database: 22 navy hoodies have XXL in stock, and the cheapest hoodie costs $45.00. Sold-out sizes on each card are struck through (e.g. L and XL on the first card).
+      </p>
+    </section>
+  </main>
+
+  <footer>Screenshots taken as a guest. They show no passwords, password hashes, or API keys.</footer>
+</body>
+</html>
